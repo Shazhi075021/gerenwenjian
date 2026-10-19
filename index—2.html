@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to me</title>
+    <style>
+        html {
+            scroll-behavior: smooth; /* 全局平滑滚动 */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #ffffff;
+            color: #222222;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 顶部导航 */
+        header {
+            padding: 30px 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 22px;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        nav ul {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #2558ff;
+        }
+
+        /* 首屏英雄区 Hero */
+        #hero {
+            text-align: center;
+            padding: 20px 0 60px;
+        }
+        .hero-circle {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+        .brush-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2558ff;
+            font-size: 48px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* 板块通用 */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        /* 精选内容网格 */
+        #gallery .grid-row-1 {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 14px;
+            margin-bottom: 50px;
+        }
+        .grid-col-left {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
+        }
+        .grid-item {
+            background: #eee;
+            overflow: hidden;
+        }
+        .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+        }
+        .blue-block {
+            background-color: #2558ff;
+        }
+
+        /* 单品板块 */
+        #product {
+            text-align: center;
+        }
+        .skate-item {
+            width: 90px;
+            margin: 0 auto 20px;
+        }
+        .skate-item img {
+            width: 100%;
+        }
+
+        /* 内容三列网格 */
+        #blog .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .card {
+            text-align: center;
+        }
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background: #eee;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+        .card p {
+            font-size: 12px;
+            color: #555;
+            padding: 0 8px;
+        }
+
+        /* 底部深色footer */
+        footer {
+            background: #222222;
+            color: #fff;
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+        .footer-wrap {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        .footer-menu {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            font-size: 11px;
+            gap: 10px;
+        }
+        .footer-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            filter: grayscale(100%);
+            z-index: 0;
+        }
+        .footer-inner {
+            position: relative;
+            z-index: 2;
+        }
+        .thank-text {
+            color: #2558ff;
+            font-size: 40px;
+            font-style: italic;
+            text-align: right;
+        }
+        .newsletter {
+            margin-top: 20px;
+        }
+        input {
+            padding: 8px;
+            width: 240px;
+        }
+        button {
+            padding: 8px 14px;
+            background: #2558ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 响应式适配手机 */
+        @media(max-width : 991px ){
+            #gallery .grid-row-1 {
+                grid-template-columns: 1fr;
+            }
+            #blog .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .footer-wrap {
+                grid-template-columns: 1fr;
+            }
+            .footer-menu {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- 导航菜单（目录跳转） -->
+        <header>
+			 <section id="hero">
+           <style>
+/* 开场动画样式 */
+.animate-item {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.title-animate {
+  animation: fadeDown 1.0s ease forwards;
+}
+.nav-animate {
+  animation: fadeDown 1.2s ease 0.3s forwards;
+}
+.circle-animate {
+  animation: fadeDown 1.2s ease 0.6s forwards;
+}
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+<div class="animate-item title-animate">
+  <h1 style="text-align:center; font-weight:normal; letter-spacing:2px;">Welcome to me</h1>
+</div>
+
+<div class="animate-item nav-animate">
+  <nav style="text-align:center; margin:12px 0 40px;">
+    <a href="#hero" style="margin:0 10px; color:#333; text-decoration:none;">简介</a>
+    <a href="#gallery" style="margin:0 10px; color:#333; text-decoration:none;">业务</a>
+    <a href="#product" style="margin:0 10px; color:#333; text-decoration:none;">须知</a>
+    <a href="#blog" style="margin:0 10px; color:#333; text-decoration:none;">联系</a>
+    <a href="#footer" style="margin:0 10px; color:#333; text-decoration:none;">其他</a>
+  </nav>
+</div>
+
+<div class="animate-item circle-animate" style="text-align:center;">
+  <!-- 你的圆形图片，原样保留 -->
+  <div style="width:420px; height:420px; border-radius:50%; overflow:hidden; margin:0 auto; position:relative;">
+    <img src="https://fastly.picsum.photos/id/331/600/600.jpg?hmac=nYk7zP3ftmOJgqkNT5-f7GeJ2x6FftY0cLyM02pknW4" style="width:100%; height:100%; object-fit:cover;filiter:grayscale(100%);transition:0.4s
+															ease;">
+	 
+     <div class="brush-text">Sample&nbsp;</div>
+  </div>
+</div>
+
+        </header>
+              
+        </section>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		<br>&nbsp;<br>
+		
+		<p style="text-align:center;">简介</p>
+		
+		<div class="card-wrap" style="display:flex; gap:30px; flex-wrap:wrap; justify-content:center; margin:20px 0;">
+<style>
+/* 卡片样式写在head的style标签里 */
+.card{
+    width:300px;         /*卡片宽度*/
+    border:1px solid #ccc;
+    border-radius:10px;  /*圆角*/
+    box-shadow:0 2px 8px #ddd; /*阴影，卡片立体感*/
+    padding:15px;        /*内部留白*/
+}
+.card img{
+    width:100%;
+    border-radius:6px;
+}
+.card h3{
+    text-align:center;  /*标题居中*/
+}
+</style>
+
+<body>
+<!-- 卡片主体 -->
+<div class="card">
+    <img src="https://fastly.picsum.photos/id/1021/200/200.jpg?hmac=5Jzd15OWoPw0fwvsvL05A1BAIN_B543TvjlxqGk1PDU">
+    <h3>沙沚</h3>
+    <p>INTJ</p>
+    <p>重度睡眠爱好者</a>
+</div>
+</body>
+		<!-- 第2张卡片 -->
+<div class="profile-card" style="border:1px solid #ddd; border-radius:10px; padding:15px; width:300px; text-align:center; background:#fff;">
+    
+	<div style="width:100%; aspect-ratio:1/1; background-color:#2558ff; border-radius:10px; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 1px); background-size: 6px 6px;"></div>
+</div>
+    <h2 style="margin:12px 0 4px; font-size:20px;">Nineteen</h2>
+    <p style="font-size:14px; color:#666;">人生无处不青山</p>
+</div>
+
+
+<!-- 第3张卡片 -->
+<div class="profile-card" style="border:1px solid #ddd; border-radius:10px; padding:15px; width:300px; text-align:center; background:#fff;">
+    <img src="https://fastly.picsum.photos/id/79/200/200.jpg?hmac=jnCRb6UX5VWA4Kxl91zIBXPa2iJJsmVwzbxrzt6TahQ" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:6px;" alt="头像">
+    <h2 style="margin:12px 0 4px; font-size:20px;">爱人</h2>
+    <p style="font-size:14px; color:#666;">Money</p>
+</div>
+		</section>
+
+	  <!-- 图片画廊板块 -->
+        <section id="gallery">
+            <div class="section-title">业务</div>
+            <div class="grid-row-1">
+                <div class="grid-col-left">
+                    <div class="grid-item">
+						<img src="f343394520c3a5d14c2254aabc045831.jpg" width="400" height="400" alt=""/> 
+                    </div>
+                    <div class="grid-item blue-block"></div>
+                </div>
+               <!-- 合并后的单个文本框，占据原来中间+右侧两栏宽度 -->
+<div style="grid-column: 2 / 4; background:#f7f7f7; border:1px solid #eee; padding:32px; display:flex; flex-direction:column; justify-content:center;">
+    <h4 style="margin:0 0 16px; color:#222; font-size:18px; letter-spacing:1px;">业务展示</h4>
+    <p style="margin:0; color:#555; font-size:14px; line-height:1.7;">
+       （业务内容）
+    </p>
+</div>
+
+      </section>
+
+        <!-- 滑板单品板块 -->
+        <section id="product">
+            <div class="section-title">须知</div>
+            <div class="skate-item">
+              <img src="https://picsum.photos/id/1015/120/400" alt="blue skateboard">
+            </div>
+            <p>Wonderful Life</p>
+			<div style="margin-top:24px; display:flex; justify-content:center;">
+  <div style="width:100%; max-width:2000px; border:2px solid #2558ff; padding:20px; background:#fff;">
+    <p style="margin:0; font-size:14px; line-height:1.6; color:#222;">
+      （填写须知）
+    </p>
+  </div>
+</div>
+
+        </section>
+
+        <!-- 图文故事板块 -->
+        <section id="blog">
+            <div class="section-title">联系</div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-img">
+                      <img src="https://picsum.photos/id/1016/400/300" alt="skate">
+                    </div>
+                    <p>（联系方式）</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                      <img src="https://picsum.photos/id/1018/400/300" alt="skate">
+                    </div>
+                    <p>（联系方式）</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                      <img src="https://picsum.photos/id/1019/400/300" alt="skate">
+                    </div>
+                    <p>（联系方式）</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 底部板块 -->
+<footer id="footer">
+        <div class="container footer-inner">
+            <div class="footer-wrap">
+                <div>
+					
+  <div>
+    <p style="margin:0; font-size:20px; color:#2558ff; font-weight:bold; letter-spacing:2px;">Thanks for coming</p>
+  </div>
+                    <div class="newsletter">
+  <input type="text" id="emailInput" placeholder="随便输入点什么吧！" style="padding:8px; border:1px solid #ccc;">
+  <button onclick="showThanks()" style="padding:8px 14px; background:#2558ff; color:#fff; border:none; cursor:pointer;">发送</button>
+</div>
+
+<div id="floatTip" style="
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #2558ff;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s ease;
+">谢谢惠顾</div>
+
+<script>
+function showThanks(){
+  const inputVal = document.getElementById('emailInput').value.trim();
+  // 判断：只要输入了字符就触发
+  if(inputVal !== ''){
+    const tip = document.getElementById('floatTip');
+    tip.style.opacity = "1";
+    tip.style.transform = "translate(-50%, -80%)";
+    // 2秒后消失
+    setTimeout(()=>{
+      tip.style.opacity = "0";
+      tip.style.transform = "translate(-50%, -50%)";
+    }, 2000)
+  }
+}
+</script>
+
+</footer>
+</body>
+</html>
+
